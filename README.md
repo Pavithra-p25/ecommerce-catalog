@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# E-Commerce Product Catalog
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Description
+This project is an **E-Commerce Product Catalog** designed for inventory management.  
+It allows an admin to manage products with CRUD operations: Add, Edit, Delete, and List.  
+The project includes **admin login authentication** and **product search/filtering** functionality.  
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
+- Admin login authentication
+- Add new products with details:
+  - Product Name
+  - Category
+  - Description
+  - Price
+  - Stock Quantity
+  - Supplier
+- List all products in a table
+- Search products by name
+- Filter products by category
+- Edit existing product information
+- Delete products from the catalog
+- Responsive UI for both desktop and mobile
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
+**Frontend:** ReactJS  
+**Backend:** Java (Spring Boot)  
+**Database:** MySQL  
+**Version Control:** Git, GitHub  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Setup Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend (Java + Spring Boot)
+1. Install **Java JDK** and **MySQL** on your machine.
+2. Create a MySQL database named `ecommerce_db`.
+3. Clone the repository:
+```bash
+git clone https://github.com/Pavithra-p25/ecommerce-catalog.git
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Navigate to the backend folder:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+cd backend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+Configure database credentials in application.properties:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+spring.datasource.url=jdbc:mysql://localhost:3306/ecommerce_db
+spring.datasource.username=YOUR_MYSQL_USERNAME
+spring.datasource.password=YOUR_MYSQL_PASSWORD
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Run the Spring Boot backend server:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+mvn spring-boot:run
 
-## Learn More
+Frontend (ReactJS)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Navigate to the frontend folder (ecommerce-catalog):
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+cd frontend
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Install dependencies:
 
-### Analyzing the Bundle Size
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+Start the React development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+npm start
 
-### Advanced Configuration
+How to Run the Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Make sure MySQL and the backend server are running.
 
-### Deployment
+Start the frontend server with npm start.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Open your browser and go to http://localhost:3000.
 
-### `npm run build` fails to minify
+Login with admin credentials.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Add, edit, delete, or view products as needed.
