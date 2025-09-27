@@ -1,9 +1,4 @@
--- Product Catalog System Database Schema
--- Execute these commands in your MySQL database
 
--- Create database (run this first)
--- CREATE DATABASE product_catalog;
--- USE product_catalog;
 
 -- Table for admin users
 CREATE TABLE admins (
