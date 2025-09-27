@@ -19,9 +19,11 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         try {
+            System.out.println("Login request received: " + loginRequest.getUsername());
             LoginResponse loginResponse = authService.authenticateUser(loginRequest);
             return ResponseEntity.ok(loginResponse);
         } catch (RuntimeException e) {
+            System.out.println("Login failed: " + e.getMessage());
             return ResponseEntity.badRequest().build();
         }
     }

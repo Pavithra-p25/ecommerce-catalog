@@ -4,6 +4,7 @@ import { useAuth } from '../hooks/useAuth';
 import { productsAPI } from '../api/api';
 import { notify } from '../components/Notification';
 import ConfirmDialog from '../components/ConfirmDialog';
+import { formatPrice } from '../utils/currency';
 import './ProductListPage.css';
 
 const ProductListPage = () => {
@@ -64,24 +65,20 @@ const ProductListPage = () => {
 
   const handleDeleteConfirm = async () => {
     try {
+      console.log('Attempting to delete product with ID:', deleteDialog.product.id);
       await productsAPI.delete(deleteDialog.product.id);
+      console.log('Product deleted successfully');
       notify.success('Product deleted successfully');
       setDeleteDialog({ isOpen: false, product: null });
       fetchProducts(); // Refresh the list
     } catch (error) {
+      console.error('Delete error:', error);
       notify.error('Failed to delete product: ' + error.message);
     }
   };
 
   const handleDeleteCancel = () => {
     setDeleteDialog({ isOpen: false, product: null });
-  };
-
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(price);
   };
 
   return (
@@ -142,7 +139,7 @@ const ProductListPage = () => {
                   <tr>
                     <th>Name</th>
                     <th>Category</th>
-                    <th>Price</th>
+                    <th>Price (₹)</th>
                     <th>Stock</th>
                     <th>Supplier</th>
                     <th>Actions</th>

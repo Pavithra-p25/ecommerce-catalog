@@ -2,9 +2,22 @@ const API_BASE_URL = '/api';
 
 const handleResponse = async (response) => {
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ message: 'Network error' }));
-    throw new Error(error.message || `HTTP error! status: ${response.status}`);
+    let errorMessage = `HTTP error! status: ${response.status}`;
+    try {
+      const error = await response.json();
+      errorMessage = error.message || errorMessage;
+    } catch (e) {
+      // If response is not JSON, use status message
+      errorMessage = response.statusText || errorMessage;
+    }
+    throw new Error(errorMessage);
   }
+  
+  // Handle empty responses (like 204 No Content for DELETE)
+  if (response.status === 204 || response.headers.get('content-length') === '0') {
+    return null;
+  }
+  
   return response.json();
 };
 

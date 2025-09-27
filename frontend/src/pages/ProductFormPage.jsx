@@ -189,7 +189,7 @@ const ProductFormPage = () => {
           <div className="form-row">
             <div className="form-col">
               <FormInput
-                label="Price"
+                label="Price (₹)"
                 name="price"
                 type="number"
                 step="0.01"
@@ -197,7 +197,7 @@ const ProductFormPage = () => {
                 value={formData.price}
                 onChange={handleChange}
                 error={errors.price}
-                placeholder="0.00"
+                placeholder="Enter price in rupees"
                 required
               />
             </div>
