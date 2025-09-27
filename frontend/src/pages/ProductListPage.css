@@ -1,0 +1,144 @@
+.page-header {
+  margin-bottom: 20px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.header-content h1 {
+  margin: 0;
+  color: #333;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 14px;
+}
+
+.filters-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.search-filters {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+  max-width: 600px;
+}
+
+.search-filters .form-group {
+  margin-bottom: 0;
+  min-width: 200px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.product-name {
+  font-weight: 500;
+}
+
+.product-description {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.category-badge {
+  background-color: #e9ecef;
+  color: #495057;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.price {
+  font-weight: 600;
+  color: #28a745;
+}
+
+.stock.low-stock {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.actions {
+  white-space: nowrap;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.page-info {
+  color: #666;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filters-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-filters {
+    flex-direction: column;
+  }
+  
+  .search-filters .form-group {
+    min-width: auto;
+  }
+  
+  .product-description {
+    max-width: 150px;
+  }
+  
+  .table {
+    font-size: 12px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 8px 4px;
+  }
+  
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .actions .btn {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+}
