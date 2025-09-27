@@ -39,7 +39,7 @@ ecommerce-catalog/
 
 ### Prerequisites
 - JDK 17 or higher
-- Maven 3.6+
+- Maven 3.6+  
 - Node.js 18+ and npm
 - MySQL 8.0+
 
@@ -48,8 +48,13 @@ ecommerce-catalog/
    ```sql
    CREATE DATABASE product_catalog;
    ```
-2. Update database configuration in `backend/src/main/resources/application.properties`
-3. Run the seed script: `backend/db/seed.sql`
+2. Update database configuration in `backend/src/main/resources/application.properties`:
+   ```properties
+   spring.datasource.url=jdbc:mysql://localhost:3306/product_catalog?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+   spring.datasource.username=your_mysql_username
+   spring.datasource.password=your_mysql_password
+   ```
+3. Run the seed script: `backend/db/seed.sql` in your MySQL database
 
 ### Backend Setup
 1. Navigate to backend directory:
@@ -62,6 +67,7 @@ ecommerce-catalog/
    mvn spring-boot:run
    ```
 3. Backend will run on `http://localhost:8080`
+4. API endpoints will be available at `http://localhost:8080/api/`
 
 ### Frontend Setup
 1. Navigate to frontend directory:
@@ -74,9 +80,15 @@ ecommerce-catalog/
    ```
 3. Start development server:
    ```bash
-   npm start
+   npm run dev
    ```
 4. Frontend will run on `http://localhost:3000`
+
+### Quick Start
+1. Ensure MySQL is running and database is created
+2. Run backend: `cd backend && mvn spring-boot:run`
+3. Run frontend: `cd frontend && npm run dev`
+4. Open `http://localhost:3000` and login with: **admin** / **admin123**
 
 ## Default Login Credentials
 - **Username**: admin
