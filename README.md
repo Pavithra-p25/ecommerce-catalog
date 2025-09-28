@@ -89,39 +89,29 @@ ecommerce-catalog/
 4. Frontend will run on `http://localhost:3000`
 
 ### Quick Start
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Pavithra-p25/ecommerce-catalog.git
-   cd ecommerce-catalog
-   ```
 
-2. **Setup Database**:
-   ```bash
-   # Create database and user in MySQL
-   mysql -u root -p -e "CREATE DATABASE ecommerce_catalog; CREATE USER 'catalog_user'@'localhost' IDENTIFIED BY 'catalog_password'; GRANT ALL PRIVILEGES ON ecommerce_catalog.* TO 'catalog_user'@'localhost'; FLUSH PRIVILEGES;"
-   
-   # Load sample data
-   mysql -u catalog_user -p ecommerce_catalog < database/setup.sql
-   ```
+#### 🚀 **Automated Setup (Recommended)**
+```bash
+# Clone the repository
+git clone https://github.com/Pavithra-p25/ecommerce-catalog.git
+cd ecommerce-catalog
 
-3. **Start Backend** (in one terminal):
-   ```bash
-   cd backend
-   mvn clean install
-   mvn spring-boot:run
-   ```
+# Run automated setup script
+./setup.sh          # Linux/macOS
+setup.bat           # Windows
+```
 
-4. **Start Frontend** (in another terminal):
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
+#### 📋 **Manual Setup** 
+For detailed step-by-step instructions, see **[SETUP_GUIDE.md](SETUP_GUIDE.md)**
 
-5. **Access Application**:
-   - Open `http://localhost:3000`
-   - Login with: **admin** / **admin123**
-   - The admin user is automatically created with secure password hashing!
+#### ⚡ **Quick Manual Setup**
+1. **Clone**: `git clone https://github.com/Pavithra-p25/ecommerce-catalog.git`
+2. **Database**: Run `database/setup.sql` in MySQL 
+3. **Backend**: `cd backend && mvn clean install && mvn spring-boot:run`
+4. **Frontend**: `cd frontend && npm install && npm run dev`
+5. **Access**: `http://localhost:3000` (Login: **admin** / **admin123**)
+
+> ✅ **The admin user is automatically created with secure password hashing - no manual hash insertion needed!**
 
 ## Default Login Credentials
 - **Username**: admin
