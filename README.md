@@ -24,14 +24,17 @@ ecommerce-catalog/
 │   ├── src/main/java/
 │   ├── src/main/resources/
 │   ├── src/test/java/
-│   ├── pom.xml
-│   └── db/
-│       └── seed.sql
+│   └── pom.xml
 ├── frontend/                # React application
 │   ├── src/
 │   ├── public/
 │   ├── package.json
-│   └── README.md
+│   └── vite.config.js
+├── database/                # Database setup
+│   └── setup.sql           # Database schema and sample data
+├── SETUP_GUIDE.md          # Detailed setup instructions
+├── setup.sh                # Automated setup (Linux/macOS)
+├── setup.bat               # Automated setup (Windows)
 └── README.md               # This file
 ```
 
