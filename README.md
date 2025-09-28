@@ -44,17 +44,21 @@ ecommerce-catalog/
 - MySQL 8.0+
 
 ### Database Setup
-1. Create MySQL database:
+1. Create MySQL database and user:
    ```sql
-   CREATE DATABASE product_catalog;
+   CREATE DATABASE ecommerce_catalog;
+   CREATE USER 'catalog_user'@'localhost' IDENTIFIED BY 'catalog_password';
+   GRANT ALL PRIVILEGES ON ecommerce_catalog.* TO 'catalog_user'@'localhost';
+   FLUSH PRIVILEGES;
+   USE ecommerce_catalog;
    ```
-2. Update database configuration in `backend/src/main/resources/application.properties`:
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/product_catalog?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-   spring.datasource.username=your_mysql_username
-   spring.datasource.password=your_mysql_password
+2. Run the database setup script:
+   ```bash
+   mysql -u catalog_user -p ecommerce_catalog < database/setup.sql
    ```
-3. Run the seed script: `backend/db/seed.sql` in your MySQL database
+   Or manually execute the SQL commands from `database/setup.sql`
+
+3. **Note**: The admin user is created automatically by the Spring Boot application on first startup with secure password hashing. No manual password hash insertion needed!
 
 ### Backend Setup
 1. Navigate to backend directory:
@@ -85,10 +89,39 @@ ecommerce-catalog/
 4. Frontend will run on `http://localhost:3000`
 
 ### Quick Start
-1. Ensure MySQL is running and database is created
-2. Run backend: `cd backend && mvn spring-boot:run`
-3. Run frontend: `cd frontend && npm run dev`
-4. Open `http://localhost:3000` and login with: **admin** / **admin123**
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Pavithra-p25/ecommerce-catalog.git
+   cd ecommerce-catalog
+   ```
+
+2. **Setup Database**:
+   ```bash
+   # Create database and user in MySQL
+   mysql -u root -p -e "CREATE DATABASE ecommerce_catalog; CREATE USER 'catalog_user'@'localhost' IDENTIFIED BY 'catalog_password'; GRANT ALL PRIVILEGES ON ecommerce_catalog.* TO 'catalog_user'@'localhost'; FLUSH PRIVILEGES;"
+   
+   # Load sample data
+   mysql -u catalog_user -p ecommerce_catalog < database/setup.sql
+   ```
+
+3. **Start Backend** (in one terminal):
+   ```bash
+   cd backend
+   mvn clean install
+   mvn spring-boot:run
+   ```
+
+4. **Start Frontend** (in another terminal):
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+5. **Access Application**:
+   - Open `http://localhost:3000`
+   - Login with: **admin** / **admin123**
+   - The admin user is automatically created with secure password hashing!
 
 ## Default Login Credentials
 - **Username**: admin
@@ -106,8 +139,61 @@ ecommerce-catalog/
 - `PUT /api/products/{id}` - Update product
 - `DELETE /api/products/{id}` - Delete product
 
+## Troubleshooting
+
+### Common Issues
+
+#### 1. Internal Server Error / Authentication Issues
+**Problem**: Getting internal server error when trying to login, especially after fresh clone.
+
+**Solution**: This is usually due to password hashing issues. The application now automatically creates the admin user with proper password hashing.
+
+- ✅ **Fixed**: Admin user is created automatically by `DataInitializer` component
+- ✅ **No manual hash insertion needed**: Password is hashed securely by Spring Security
+- ✅ **Consistent across systems**: Works the same on any machine after clone
+
+#### 2. Database Connection Issues
+```bash
+# Check MySQL service is running
+sudo systemctl status mysql        # Linux
+brew services list mysql          # macOS
+net start mysql                   # Windows
+
+# Test database connection
+mysql -u catalog_user -p -h localhost ecommerce_catalog
+```
+
+#### 3. Port Already in Use
+```bash
+# Kill processes on specific ports
+sudo lsof -ti:8080 | xargs sudo kill -9  # Backend
+sudo lsof -ti:3000 | xargs sudo kill -9  # Frontend
+```
+
+#### 4. Maven Build Issues
+```bash
+# Clear Maven cache and rebuild
+mvn clean
+rm -rf ~/.m2/repository
+mvn clean install
+```
+
+#### 5. Node.js/NPM Issues
+```bash
+# Clear npm cache and reinstall
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install
+```
+
+### Verify Setup
+1. **Backend Health Check**: `curl http://localhost:8080/api/products`
+2. **Frontend Access**: Open `http://localhost:3000`
+3. **Login Test**: Use admin/admin123 credentials
+4. **Database Check**: Look for "✅ Admin user created successfully" in backend logs
+
 ## Testing
-- **Backend**: `mvn test` in backend directory
+- **Backend**: `mvn test` in backend directory  
 - **Frontend**: `npm test` in frontend directory
 
 ## Contributing
