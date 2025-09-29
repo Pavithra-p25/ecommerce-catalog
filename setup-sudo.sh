@@ -118,6 +118,8 @@ main() {
     echo "1. Backend: cd backend && mvn spring-boot:run"
     echo "2. Frontend: cd frontend && npm run dev"
     echo "3. Open: http://localhost:3000 (Login: admin/admin123)"
+    echo
+    print_info "If you get 'BUILD SUCCESS' but app doesn't start, check TROUBLESHOOTING.md"
 }
 
 main

@@ -184,6 +184,8 @@ main() {
     echo "   Login with: admin / admin123"
     echo
     print_info "Look for '✅ Admin user created successfully' in backend logs!"
+    echo
+    print_warning "If you get 'BUILD SUCCESS' but app doesn't start, check TROUBLESHOOTING.md"
 }
 
 # Run main function
