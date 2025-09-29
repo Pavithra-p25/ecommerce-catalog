@@ -34,8 +34,14 @@ EXIT;
 ## Step 2: Fresh Database Setup
 
 ### 2.1 Create New Database and User
+
+**⚠️ PASSWORD REQUIRED: You'll need your MySQL ROOT password**
+- This is the password you set when installing MySQL
+- Common defaults: empty (just press Enter), `root`, `mysql`, or your system password
+- If you don't know it, see troubleshooting section below
+
 ```sql
--- Connect as MySQL root
+-- Connect as MySQL root (will ask for ROOT password)
 mysql -u root -p
 
 -- Create fresh database and user
@@ -144,6 +150,30 @@ sudo lsof -ti:8080 | xargs sudo kill -9
 
 # If port 3000 is busy (frontend)
 sudo lsof -ti:3000 | xargs sudo kill -9
+```
+
+### MySQL Root Password Issues:
+
+**Problem**: "I don't know my MySQL root password"
+
+**Solutions**:
+```bash
+# Option 1: Try common defaults
+mysql -u root -p
+# Try: empty (just press Enter), 'root', 'mysql', 'admin'
+
+# Option 2: Check if password authentication is disabled
+mysql -u root
+# Some installations allow root login without password
+
+# Option 3: Reset MySQL root password (Linux)
+sudo mysql
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'newpassword';
+FLUSH PRIVILEGES;
+EXIT;
+
+# Option 4: Use sudo mysql (Linux - if configured for socket authentication)
+sudo mysql -u root
 ```
 
 ### Database Connection Issues:

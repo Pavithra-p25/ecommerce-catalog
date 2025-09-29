@@ -52,20 +52,28 @@ check_mysql() {
 # Setup database
 setup_database() {
     print_info "Setting up database..."
+    echo
+    print_warning "You will be asked for your MySQL ROOT PASSWORD"
+    echo "This is the password you set when installing MySQL (might be empty - just press Enter)"
+    echo "Common defaults: empty, 'root', 'mysql', or your system password"
+    echo
     
     # Ask if they want to drop existing database
+    echo "Checking if database already exists..."
     if mysql -u root -p -e "USE ecommerce_catalog;" 2>/dev/null; then
         echo
         print_warning "Database 'ecommerce_catalog' already exists!"
         read -p "Do you want to delete it and start fresh? (y/N): " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
+            echo "Removing old database... (MySQL root password required again)"
             mysql -u root -p -e "DROP DATABASE IF EXISTS ecommerce_catalog; DROP USER IF EXISTS 'catalog_user'@'localhost';"
             print_status "Old database removed"
         fi
     fi
     
     # Create database and user
+    echo "Creating database and user... (MySQL root password required)"
     mysql -u root -p << EOF
 CREATE DATABASE IF NOT EXISTS ecommerce_catalog;
 CREATE USER IF NOT EXISTS 'catalog_user'@'localhost' IDENTIFIED BY 'catalog_password';

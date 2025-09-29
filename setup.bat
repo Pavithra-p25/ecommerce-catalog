@@ -32,7 +32,12 @@ echo ========================================
 echo   Step 1: Database Setup
 echo ========================================
 echo.
+echo IMPORTANT: You will need your MySQL ROOT PASSWORD
+echo This is the password you set when installing MySQL
+echo Common defaults: empty (just press Enter), 'root', 'mysql'
+echo.
 echo Please run these commands in MySQL Command Line Client:
+echo (Start MySQL Command Line Client and enter your ROOT password)
 echo.
 echo CREATE DATABASE ecommerce_catalog;
 echo CREATE USER 'catalog_user'@'localhost' IDENTIFIED BY 'catalog_password';
@@ -40,7 +45,7 @@ echo GRANT ALL PRIVILEGES ON ecommerce_catalog.* TO 'catalog_user'@'localhost';
 echo FLUSH PRIVILEGES;
 echo EXIT;
 echo.
-echo Then load sample data:
+echo Then load sample data (password: catalog_password):
 echo mysql -u catalog_user -p ecommerce_catalog ^< database\setup.sql
 echo.
 pause
