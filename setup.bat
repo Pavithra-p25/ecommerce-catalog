@@ -7,6 +7,11 @@ echo.
 REM Check if we're in the right directory
 if not exist "backend" (
     echo ERROR: backend directory not found. Are you in the project root?
+    echo.
+    echo Make sure you're in the ecommerce-catalog directory after cloning:
+    echo   git clone https://github.com/Pavithra-p25/ecommerce-catalog.git
+    echo   cd ecommerce-catalog
+    echo   setup.bat
     pause
     exit /b 1
 )
@@ -19,11 +24,13 @@ if not exist "frontend" (
 
 echo This script will help you set up the Ecommerce Catalog application.
 echo.
-echo Make sure you have installed:
-echo   - Java JDK 21+
-echo   - Maven 3.9+  
-echo   - Node.js 18+
-echo   - MySQL 8.0+
+echo PREREQUISITES REQUIRED:
+echo   - Java JDK 21+ (winget install Eclipse.Temurin.21.JDK)
+echo   - Maven 3.9+   (https://maven.apache.org/download.cgi)
+echo   - Node.js 18+  (winget install OpenJS.NodeJS)  
+echo   - MySQL 8.0+   (winget install Oracle.MySQL)
+echo.
+echo For detailed Windows setup instructions, see: WINDOWS_SETUP.md
 echo.
 pause
 

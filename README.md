@@ -101,11 +101,14 @@ cd ecommerce-catalog
 
 # Run automated setup script
 ./setup.sh          # Linux/macOS
+./setup-sudo.sh     # Linux (if sudo mysql works)
 setup.bat           # Windows
 ```
 
-#### 📋 **Manual Setup** 
-For detailed step-by-step instructions, see **[SETUP_GUIDE.md](SETUP_GUIDE.md)**
+#### 📋 **Platform-Specific Guides**
+- **Windows Users:** See **[WINDOWS_SETUP.md](WINDOWS_SETUP.md)** 📱
+- **Linux/macOS:** See **[SETUP_GUIDE.md](SETUP_GUIDE.md)** 🐧🍎
+- **General:** Continue with quick setup below ⚡
 
 #### ⚡ **Quick Manual Setup**
 1. **Clone**: `git clone https://github.com/Pavithra-p25/ecommerce-catalog.git`
